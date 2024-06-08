@@ -1,19 +1,9 @@
-grove.onGesture(GroveGesture.Right, function () {
-    basic.showArrow(ArrowNames.South)
-})
-grove.onGesture(GroveGesture.Left, function () {
-    basic.showArrow(ArrowNames.North)
-})
-input.onButtonPressed(Button.A, function () {
+input.onGesture(Gesture.Shake, function () {
     basic.clearScreen()
 })
-grove.onGesture(GroveGesture.Up, function () {
-    basic.showArrow(ArrowNames.East)
-})
-grove.onGesture(GroveGesture.Down, function () {
-    basic.showArrow(ArrowNames.West)
-})
 grove.initGesture()
+pins.setPull(DigitalPin.P5, PinPullMode.PullUp)
+pins.setPull(DigitalPin.P11, PinPullMode.PullUp)
 pins.setPull(DigitalPin.P8, PinPullMode.PullUp)
 pins.setPull(DigitalPin.P12, PinPullMode.PullUp)
 pins.setPull(DigitalPin.P13, PinPullMode.PullUp)
@@ -25,5 +15,9 @@ basic.forever(function () {
         watchfont.showNumber2(12)
     } else if (pins.digitalReadPin(DigitalPin.P13) == 0) {
         watchfont.showNumber2(13)
+    } else if (pins.digitalReadPin(DigitalPin.P5) == 0) {
+        basic.showString("A")
+    } else if (pins.digitalReadPin(DigitalPin.P11) == 0) {
+        basic.showString("B")
     }
 })
